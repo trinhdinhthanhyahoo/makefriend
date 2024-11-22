@@ -1,0 +1,1403 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #1a2a6c, #2a4065, #4a69bd);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.question {
+    display: none;
+    text-align: center;
+    transform: translateZ(50px);
+    transition: transform 0.5s ease;
+}
+
+.question.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.question h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.question p {
+    color: #34495e;
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.next-btn, .accept-btn {
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    color: white;
+}
+
+.no-btn {
+    background: #95a5a6;
+    color: white;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile Card Styles */
+.profile-card {
+    position: relative;
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.success-banner {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #ff85a2, #ff7eb3, #ff77cc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 2.2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.message-content {
+    text-align: center;
+}
+
+.winter-msg {
+    color: #4a4a4a;
+    font-size: 1.2rem;
+    margin: 0.7rem 0;
+    line-height: 1.6;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.divider {
+    position: relative;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #ff85a2);
+}
+
+.divider::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(to left, transparent, #ff85a2);
+}
+
+.divider-icon {
+    color: #ff85a2;
+    font-size: 1.5rem;
+    background: white;
+    padding: 0 15px;
+    position: relative;
+}
+
+.profile-info {
+    margin: 1.5rem 0;
+}
+
+.sender-name {
+    font-size: 1.3rem;
+    color: #ff85a2;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.contact-info {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.social-btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #ff85a2, #ff77cc);
+    box-shadow: 0 4px 15px rgba(255, 133, 162, 0.3);
+}
+
+.facebook {
+    background: linear-gradient(45deg, #77b5ff, #77ccff);
+    box-shadow: 0 4px 15px rgba(119, 181, 255, 0.3);
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 133, 162, 0.4);
+}
+
+.social-btn .icon {
+    font-size: 1.2rem;
+}
+
+/* Thêm viền tinh tế */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff85a2, #ff77cc, #77b5ff);
+    border-radius: 22px;
+    z-index: -1;
+    filter: blur(5px);
+    opacity: 0.5;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background: #3498db;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    transition: all 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Confetti & Hearts Styles */
+.confetti {
+    width: 15px;
+    height: 15px;
+    position: fixed;
+    top: -100px;
+    pointer-events: none;
+    animation: confettiFall 5s linear forwards;
+}
+
+.heart {
+    position: fixed;
+    pointer-events: none;
+    animation: heartFloat 5s linear forwards;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@keyframes heartFloat {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Hiệu ứng cho container khi thành công */
+@keyframes expandContainer {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Styles cho firework */
+.firework {
+    position: fixed;
+    bottom: 0;
+    pointer-events: none;
+    animation: shootUp 1s ease-out forwards;
+}
+
+.spark {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    animation: explode 1s ease-out forwards;
+}
+
+/* Styles cho sparkle */
+.sparkle {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: twinkle 1s ease-out infinite;
+}
+
+/* Animations */
+@keyframes shootUp {
+    0% { transform: translateY(0); opacity: 1; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+@keyframes explode {
+    0% { 
+        transform: translate(0, 0); 
+        opacity: 1;
+    }
+    100% { 
+        transform: translate(
+            calc(cos(var(--angle)) * 100px),
+            calc(sin(var(--angle)) * 100px)
+        );
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1); opacity: 1; }
+}
+
+/* Thêm styles cho nút âm thanh */
+.sound-control {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.sound-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animation cho nút khi phát âm thanh */
+.sound-btn.playing {
+    animation: soundWave 0.5s ease;
+}
+
+@keyframes soundWave {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Style riêng cho nút "Để suy nghĩ" */
+#think-btn {
+    background: #95a5a6;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+#think-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background: #7f8c8d;
+}
+
+/* Thêm styles mới cho hiệu ứng */
+.celebration-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.firework {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    animation: shootUp 1s ease-out forwards;
+}
+
+.spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    transform-origin: center;
+    animation: explode 1.5s ease-out forwards;
+}
+
+.star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 2s ease-in-out infinite;
+}
+
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffeb3b;
+    border-radius: 50%;
+    animation: sparkleRotate 2s linear infinite;
+}
+
+.confetti {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall 5s linear forwards;
+}
+
+@keyframes shootUp {
+    0% { transform: translateY(100vh); opacity: 1; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-20vh); opacity: 0; }
+}
+
+@keyframes explode {
+    0% { 
+        transform: rotate(var(--angle)) translateX(0);
+        opacity: 1;
+    }
+    100% { 
+        transform: rotate(var(--angle)) translateX(100px);
+        opacity: 0;
+    }
+}
+
+@keyframes twinkle {
+    0%, 100% { transform: scale(0.3); opacity: 0.3; }
+    50% { transform: scale(1.2); opacity: 1; }
+}
+
+@keyframes sparkleRotate {
+    0% { transform: rotate(0deg) scale(0); opacity: 0; }
+    50% { transform: rotate(180deg) scale(1); opacity: 1; }
+    100% { transform: rotate(360deg) scale(0); opacity: 0; }
+}
+
+@keyframes confettiFall {
+    0% { 
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.profile-card {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.success-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.floating-heart {
+    position: fixed;
+    pointer-events: none;
+    animation: floatUp 5s ease-in-out forwards;
+    z-index: 100;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        transform: translateY(90vh) scale(1);
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Thêm style cho container */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Styles cho celebration wrapper và containers */
+.celebration-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.floating-heart {
+    position: fixed;
+    pointer-events: none;
+    animation: floatUp 5s ease-in-out forwards;
+    z-index: 1000;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        transform: translateY(90vh) scale(1);
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-20vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Animation cho container */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* Đảm bảo container chính có position relative */
+.container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Đảm bảo profile card hiển thị trên các hiệu ứng */
+.profile-card {
+    position: relative;
+    z-index: 1001;
+}
+
+.spiral-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    perspective: 1000px;
+    z-index: 1000;
+}
+
+.spiral-emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    animation: spiralMove var(--duration, 8s) var(--delay, 0s) infinite linear;
+    transform-origin: center;
+}
+
+@keyframes spiralMove {
+    0% {
+        transform: translate(-50%, -50%) 
+                   rotate(0deg) 
+                   translateX(50px) 
+                   rotate(0deg) 
+                   scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) 
+                   rotate(var(--angle)) 
+                   translateX(200px) 
+                   rotate(calc(var(--angle) * -1))
+                   scale(var(--scale));
+        opacity: 0;
+    }
+}
+
+/* Style cho profile card */
+.profile-card {
+    position: relative;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+}
+
+.success-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animation cho container */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.success-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.emoji-spiral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.spiral-emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 24px;
+    animation: spiral 4s linear infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+
+@keyframes spiral {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(200px) rotate(-360deg);
+        opacity: 0;
+    }
+}
+
+.profile-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    z-index: 1;
+    position: relative;
+}
+
+.social-links {
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.social-btn {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: #3498db;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Thêm hiệu ứng tuyết rơi */
+.snowflake {
+    position: fixed;
+    top: -10px;
+    color: white;
+    font-size: 1em;
+    text-shadow: 0 0 5px rgba(255,255,255,0.8);
+    filter: blur(1px);
+    pointer-events: none;
+    animation: snowfall linear infinite;
+    z-index: 1;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-10vh) translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Thêm hiệu ứng cho transition giữa các câu hỏi */
+.question.animate__fadeOutLeft {
+    animation: fadeOutLeft 0.5s ease forwards;
+}
+
+.question.animate__fadeInRight {
+    animation: fadeInRight 0.5s ease forwards;
+}
+
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Style cho nút khi hover */
+.next-btn:hover, .accept-btn:hover {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(52, 152, 219, 0.3);
+}
+
+.no-btn:hover {
+    background: #7f8c8d;
+}
+
+/* Hiệu ứng cho câu hỏi active */
+.question.active {
+    transform: scale(1);
+    opacity: 1;
+    transition: all 0.5s ease;
+}
+
+.question.active h2 {
+    animation: slideDown 0.5s ease forwards;
+}
+
+.question.active p {
+    animation: fadeIn 0.5s ease 0.3s forwards;
+}
+
+.question.active .buttons {
+    animation: slideUp 0.5s ease 0.5s forwards;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Hiệu ứng bong bóng */
+.bubble {
+    position: fixed;
+    bottom: -20px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: bubbleFloat linear infinite;
+    width: 20px;
+    height: 20px;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+@keyframes bubbleFloat {
+    0% {
+        transform: translateY(0) scale(0);
+        opacity: 0;
+    }
+    20% {
+        transform: translateY(-20vh) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* Gradient Text */
+.gradient-text {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6c5ce7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 3s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Social Buttons */
+.social-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.social-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.social-btn:hover::before {
+    left: 100%;
+}
+
+.instagram {
+    background: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+.facebook {
+    background: linear-gradient(45deg, #3b5998, #2f55a4);
+}
+
+/* Profile Card Animation */
+.profile-card {
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+}
+
+/* Floating Elements */
+.winter-msg {
+    animation: floatText 3s ease-in-out infinite;
+}
+
+@keyframes floatText {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Success Banner */
+.success-banner {
+    position: relative;
+    overflow: hidden;
+}
+
+.success-banner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+}
+
+.question:hover {
+    transform: translateZ(75px) rotateX(5deg) rotateY(5deg);
+}
+
+.neon-text {
+    color: #fff;
+    text-shadow: 
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff,
+        0 0 42px #0fa,
+        0 0 82px #0fa,
+        0 0 92px #0fa,
+        0 0 102px #0fa,
+        0 0 151px #0fa;
+    animation: neonFlicker 1.5s infinite alternate;
+}
+
+@keyframes neonFlicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        text-shadow:
+            0 0 7px #fff,
+            0 0 10px #fff,
+            0 0 21px #fff,
+            0 0 42px #0fa,
+            0 0 82px #0fa,
+            0 0 92px #0fa,
+            0 0 102px #0fa,
+            0 0 151px #0fa;
+    }
+    20%, 24%, 55% {       
+        text-shadow: none;
+    }
+}
+
+.aurora-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.aurora-light {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: linear-gradient(
+        45deg,
+        rgba(0, 255, 170, 0.5),
+        rgba(0, 170, 255, 0.5),
+        rgba(170, 0, 255, 0.5)
+    );
+    filter: blur(50px);
+    animation: auroraFlow 15s linear infinite;
+    animation-delay: calc(var(--index) * -3s);
+    opacity: 0.3;
+    transform-origin: center;
+}
+
+@keyframes auroraFlow {
+    0% {
+        transform: rotate(0deg) translateY(100%);
+    }
+    100% {
+        transform: rotate(360deg) translateY(100%);
+    }
+}
+
+.particles-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    background: radial-gradient(circle at center, 
+        rgba(255,255,255,0.8) 0%,
+        rgba(255,255,255,0) 70%);
+    border-radius: 50%;
+    animation: particleFloat 10s linear infinite;
+    animation-delay: var(--delay);
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translate(random(100vw), 100vh) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(random(100vw), -100px) scale(1);
+        opacity: 0;
+    }
+}
+
+.frost-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+.frost-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        45deg,
+        transparent 20%,
+        rgba(255, 255, 255, 0.1) 40%,
+        rgba(255, 255, 255, 0.1) 60%,
+        transparent 80%
+    );
+    animation: frostShimmer 3s linear infinite;
+}
+
+.shooting-star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    left: var(--start-x);
+    top: var(--start-y);
+    animation: shootingStar 1s linear;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, white, transparent);
+    transform-origin: left;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: rotate(45deg) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(45deg) translateX(100vw);
+        opacity: 0;
+    }
+}
+
+.emoji-tornado {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.emoji-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    animation: ringRotate 20s linear infinite;
+    animation-delay: calc(var(--ring) * -2s);
+}
+
+.tornado-emoji {
+    position: absolute;
+    font-size: calc(20px + var(--ring) * 5px);
+    transform-origin: center;
+    animation: tornadoSpin var(--duration) linear infinite,
+               tornadoFloat 3s ease-in-out infinite;
+    opacity: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) 
+               rotate(calc(360deg * var(--i) / var(--total)))
+               translateY(calc(100px + var(--ring) * 50px));
+    animation-delay: var(--delay);
+}
+
+@keyframes ringRotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes tornadoSpin {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) 
+                   rotate(calc(360deg * var(--i) / var(--total)))
+                   translateY(calc(100px + var(--ring) * 50px))
+                   scale(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) 
+                   rotate(calc(360deg * var(--i) / var(--total) + 360deg))
+                   translateY(calc(100px + var(--ring) * 50px))
+                   scale(1);
+    }
+}
+
+@keyframes tornadoFloat {
+    0%, 100% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: -20px;
+    }
+}
+
+/* Điều chỉnh kích thước và vị trí của profile card */
+.profile-card {
+    position: relative;
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(45deg, rgba(26, 42, 108, 0.9), rgba(42, 64, 101, 0.9), rgba(74, 105, 189, 0.9));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    z-index: 1000;
+}
+
+.emoji-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vmax;
+    height: 100vmax;
+    animation: ringRotate 20s linear infinite;
+    animation-delay: calc(var(--ring) * -2s);
+    transform-origin: center;
+}
+
+.tornado-emoji {
+    position: absolute;
+    font-size: calc(24px + var(--ring) * 8px);
+    transform-origin: center;
+    animation: tornadoSpin var(--duration) linear infinite,
+               tornadoFloat 3s ease-in-out infinite;
+    opacity: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) 
+               rotate(calc(360deg * var(--i) / var(--total)))
+               translateY(calc(150px + var(--ring) * 100px));
+}
+
+@keyframes ringRotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes tornadoSpin {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) 
+                   rotate(calc(360deg * var(--i) / var(--total)))
+                   translateY(calc(150px + var(--ring) * 100px))
+                   scale(0);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) 
+                   rotate(calc(360deg * var(--i) / var(--total) + 360deg))
+                   translateY(calc(150px + var(--ring) * 100px))
+                   scale(1);
+    }
+}
+
+@keyframes tornadoFloat {
+    0%, 100% {
+        margin-top: 0;
+    }
+    50% {
+        margin-top: -30px;
+    }
+}
+
+/* Profile Card styles */
+.profile-card {
+    position: relative;
+    z-index: 1001;
+    max-width: 500px;
+    width: 90%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Thêm viền tinh tế thay vì hiệu ứng glow */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6c5ce7);
+    border-radius: 22px;
+    z-index: -1;
+    filter: blur(5px);
+    opacity: 0.5;
+}
+
+/* Điều chỉnh style cho các phần tử trong profile card */
+.profile-info {
+    margin: 1.5rem 0;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: transform 0.3s ease;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+}
+
+.winter-msg {
+    color: #34495e;
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+
+.gradient-text {
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d, #6c5ce7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+  
