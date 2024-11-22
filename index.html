@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hey you! 💖</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+
+<body>
+    <div class="sound-control">
+        <button id="toggleSound" class="sound-btn">
+            <span class="sound-on">🔊</span>
+            <span class="sound-off hidden">🔇</span>
+        </button>
+    </div>
+    <div class="container">
+        <!-- Câu hỏi 1 -->
+        <div class="question active" id="q1">
+            <h2>Hey! Cho mình hỏi chút...</h2>
+            <p>Bạn có đang rảnh không? 😊</p>
+            <div class="buttons">
+                <button class="next-btn" data-next="q2">Có nè</button>
+                <button class="no-btn">Không</button>
+            </div>
+        </div>
+
+        <!-- Câu hỏi 2 -->
+        <div class="question" id="q2">
+            <h2>Mình có điều muốn nói...</h2>
+            <p>Bạn có thể dành chút thời gian không? 🌟</p>
+            <div class="buttons">
+                <button class="next-btn" data-next="q3">Được chứ</button>
+                <button class="no-btn">Không hẳn</button>
+            </div>
+        </div>
+
+        <!-- Câu hỏi 3 -->
+        <div class="question" id="q3">
+            <h2>Mình thấy bạn rất đặc biệt</h2>
+            <p>Từ nụ cười đến tính cách của bạn... ✨</p>
+            <div class="buttons">
+                <button class="next-btn" data-next="q4">Thật hả?</button>
+                <button class="no-btn">Thôi nha</button>
+            </div>
+        </div>
+
+        <!-- Câu hỏi 4 -->
+        <div class="question" id="q4">
+            <h2>Trong cái lạnh của mùa đông ❄️</h2>
+            <p>Mình muốn được làm quen và trò chuyện với bạn nhiều hơn</p>
+            <div class="buttons">
+                <button class="accept-btn">Đồng ý ❤️</button>
+                <button id="think-btn">Để suy nghĩ</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
